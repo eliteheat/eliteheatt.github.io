@@ -169,4 +169,4 @@ awards:
 
 ## About Me
 
-I'm a PhD candidate in Biomedical Engineering at Georgia Tech and an American Heart Association Predoctoral Fellow. My interests lie in the realm of cardiovascular fluid mechanics and predictive computational modeling, with most of my graduate research focusing on developing novel methodologies aimed at providing real-time mechanical information (fluid, solid) for several cardiovascular surgical planning procedures (Transcatheter Aortic Valve Replacement, Fontan), marking a transformative step towards proactive heart disease management and mitigation. 
+I'm a PhD candidate in Biomedical Engineering at Georgia Tech, and my research interests lie in the realm of cardiovascular fluid mechanics and predictive computational modeling. Most of my graduate research focuses on developing novel methodologies aimed at providing real-time mechanical information (fluid, solid) for several cardiovascular surgical planning procedures (Transcatheter Aortic Valve Replacement, Fontan Operation, Percutaneous Coronary Intervention). 
