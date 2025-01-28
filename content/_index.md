@@ -39,7 +39,7 @@ sections:
         
         Thanks for visiting and please reach out if you'd like to collaborate, or just talk 😊
     design:
-      columns: '2'
+      columns: '1'
   - block: collection
     id: papers
     content:
