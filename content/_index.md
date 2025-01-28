@@ -35,8 +35,6 @@ sections:
       title: '📚 My Research'
       subtitle: ''
       text: |-
-        I'm a PhD candidate in the Wallace H. Coulter Department of Biomedical Engineering at Georgia Tech, working in the Cardiovascular Fluid Mechanics Lab under Dr. Prasad Dasi and the Emory Center for Mathematics and Computing under Dr. Alessandro Veneziani. 
-        
         My research interests lie in the realm of cardiovascular fluid mechanics and predictive computational modeling. Most of my graduate research focuses on developing novel methodologies aimed at providing real-time mechanical information (fluid, solid) for several cardiovascular surgical planning procedures (Transcatheter Aortic Valve Replacement, Fontan Operation, Percutaneous Coronary Intervention). 
         
         Please reach out if you'd like to collaborate or just talk 😃
