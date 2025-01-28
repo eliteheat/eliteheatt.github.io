@@ -24,7 +24,7 @@ sections:
         color: black
         image:
           # Add your image background to `assets/media/`.
-          filename: j.mp4
+          filename: j-ezgif.com-video-to-gif-converter.gif
           filters:
             brightness: 1.0
           size: cover
