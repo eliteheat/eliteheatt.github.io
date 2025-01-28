@@ -24,7 +24,7 @@ sections:
         color: black
         image:
           # Add your image background to `assets/media/`.
-          filename: SB3C_CoverArt_Shah.png
+          filename: j.mp4
           filters:
             brightness: 1.0
           size: cover
