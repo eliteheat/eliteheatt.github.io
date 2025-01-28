@@ -16,7 +16,7 @@ sections:
       text: ""
       # Show a call-to-action button under your biography? (optional)
       button:
-        text: Download CV
+        text: Download my CV
         url: uploads/resume.pdf
     design:
       css_class: dark
@@ -24,9 +24,9 @@ sections:
         color: black
         image:
           # Add your image background to `assets/media/`.
-          filename: j-ezgif.com-video-to-gif-converter.gif
+          filename: SB3C_CoverArt_Shah.png
           filters:
-            brightness: 1.0
+            brightness: 0.8
           size: cover
           position: center
           parallax: false
