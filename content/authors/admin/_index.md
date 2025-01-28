@@ -1,6 +1,6 @@
 ---
 # Display name
-title: Imran
+title: Imran Shah
 
 # Name pronunciation (optional)
 name_pronunciation: ''
@@ -20,7 +20,7 @@ superuser: true
 highlight_name: true
 
 # Role/position/tagline
-role: PhD Candidate
+role: PhD Candidate, AHA Predoctoral Fellow
 
 # Organizations/Affiliations to display in Biography blox
 organizations:
@@ -31,51 +31,37 @@ organizations:
 # Need to use another icon? Simply download the SVG icon to your `assets/media/icons/` folder.
 profiles:
   - icon: at-symbol
-    url: 'ishah9@gatech.edu'
+    url: 'mailto:ishah9@gatech.edu'
     label: E-mail Me
-  - icon: brands/x
-    url: https://twitter.com/GetResearchDev
-  - icon: brands/instagram
-    url: https://www.instagram.com/
-  - icon: brands/github
-    url: https://github.com/gcushen
   - icon: brands/linkedin
-    url: https://www.linkedin.com/
+    url: https://www.linkedin.com/in/imranshah9
+  - icon: brands/github
+    url: https://github.com/eliteheat
   - icon: academicons/google-scholar
-    url: https://scholar.google.com/
-  - icon: academicons/orcid
-    url: https://orcid.org/
+    url: https://scholar.google.com/citations?user=R9-iG80AAAAJ&hl=en
 
 interests:
-  - Artificial Intelligence
-  - Computational Linguistics
-  - Information Retrieval
+  - Cardiovascular Fluid Dynamics
+  - Computational Biomechanics
+  - Structural Heart Diseases
+  - Single Ventricle Defects
+  - Reduced Order Modeling
+
 
 education:
-  - area: PhD Artificial Intelligence
-    institution: Stanford University
-    date_start: 2016-01-01
-    date_end: 2020-12-31
+  - area: PhD Biomedical Engineering
+    institution: Georgia Institute of Technology & Emory University
+    date_start: ''
+    date_end: ''
     summary: |
       Thesis on _Why LLMs are awesome_. Supervised by [Prof Joe Smith](https://example.com). Presented papers at 5 IEEE conferences with the contributions being published in 2 Springer journals.
     button:
       text: 'Read Thesis'
       url: 'https://example.com'
-  - area: MEng Artificial Intelligence
-    institution: Massachusetts Institute of Technology
-    date_start: 2016-01-01
-    date_end: 2020-12-31
-    summary: |
-      GPA: 3.8/4.0
-
-      Courses included:
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - area: BSc Artificial Intelligence
-    institution: Massachusetts Institute of Technology
-    date_start: 2016-01-01
-    date_end: 2020-12-31
+  - area: BS Biomedical Engineering
+    institution: Georgia institute of Technology
+    date_start: 2016-06-01
+    date_end: 2018-12-31
     summary: |
       GPA: 3.4/4.0
       
@@ -183,4 +169,4 @@ awards:
 
 ## About Me
 
-Chien Shiung Wu is a professor of artificial intelligence at the Stanford AI Lab. Her research interests include distributed robotics, mobile computing and programmable matter. She leads the Robotic Neurobiology group, which develops self-reconfiguring robots, systems of self-organizing robots, and mobile sensor networks.
+I'm a PhD candidate in Biomedical Engineering at Georgia Tech and an American Heart Association Predoctoral Fellow. My interests lie in the realm of cardiovascular fluid mechanics and predictive computational modeling, with most of my graduate research focusing on developing novel methodologies aimed at providing real-time mechanical information (fluid, solid) for several cardiovascular surgical planning procedures (Transcatheter Aortic Valve Replacement, Fontan), marking a transformative step towards proactive heart disease management and mitigation. 
