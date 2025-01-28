@@ -35,11 +35,11 @@ sections:
       title: '📚 My Research'
       subtitle: ''
       text: |-
-        Use this area to speak to your mission. I'm a research scientist in the Moonshot team at DeepMind. I blog about machine learning, deep learning, and moonshots.
-
-        I apply a range of qualitative and quantitative methods to comprehensively investigate the role of science and technology in the economy.
+        I'm a PhD candidate in the Wallace H. Coulter Department of Biomedical Engineering at Georgia Tech, working in the Cardiovascular Fluid Mechanics Lab under Dr. Prasad Dasi and the Emory Center for Mathematics and Computing under Dr. Alessandro Veneziani. 
         
-        Please reach out to collaborate 😃
+        My research interests lie in the realm of cardiovascular fluid mechanics and predictive computational modeling. Most of my graduate research focuses on developing novel methodologies aimed at providing real-time mechanical information (fluid, solid) for several cardiovascular surgical planning procedures (Transcatheter Aortic Valve Replacement, Fontan Operation, Percutaneous Coronary Intervention). 
+        
+        Please reach out if you'd like to collaborate or just talk 😃
     design:
       columns: '1'
   - block: collection
@@ -74,6 +74,7 @@ sections:
       view: article-grid
       columns: 1
   - block: collection
+    demo: true
     id: news
     content:
       title: Recent News
