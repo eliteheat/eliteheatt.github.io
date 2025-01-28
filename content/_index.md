@@ -30,19 +30,18 @@ sections:
           size: cover
           position: center
           parallax: false
-  - block: collection
+  - block: markdown
     content:
       title: '📚 My Research'
       subtitle: ''
       text: |-
         My research interests lie in the realm of cardiovascular fluid mechanics and predictive computational modeling. My graduate research focuses on developing novel methodologies aimed at providing real-time mechanical information (fluid, solid) for several cardiovascular surgical planning procedures, including Transcatheter Aortic Valve Replacement, the Fontan Operation and Percutaneous Coronary Intervention. I'm pretty passionate about developing novel data- and model-driven computational techniques for optimizing treatment of cardiovascular diseases, as well as translating these approaches for real-time use in the clinic.
-        
         Thanks for visiting and please reach out if you'd like to collaborate, or just talk 😊
 
-        {{< video src="j.mp4" controls="yes" >}}
+        {{< video src="Supplemental Video 1 (Fly Through).mp4" >}}
+
     design:
-      view: showcase
-      columns: '2'
+      columns: '1'
   - block: collection
     id: papers
     content:
