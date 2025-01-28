@@ -26,7 +26,7 @@ sections:
           # Add your image background to `assets/media/`.
           filename: SB3C_CoverArt_Shah.png
           filters:
-            brightness: 0.8
+            brightness: 0.7
           size: cover
           position: center
           parallax: false
