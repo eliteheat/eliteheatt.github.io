@@ -36,15 +36,15 @@ sections:
       subtitle: ''
       text: |-
 
-        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-        <td> {{< video src="test.mp4" autoplay="true" loop="true" >}}
-        <td> {{< video src="j.mp4" autoplay="true" loop="true" >}
-        </tr>
-        </table>
-        
         {{< video src="test.mp4" autoplay="true" loop="true" >}}
         {{< video src="j.mp4" autoplay="true" loop="true" >}}
+
+        <style>
+        .video {
+        width: 245px /* or whatever you want */
+        display: inline-block;
+        }
+        </style>
 
         My research interests lie in the realm of cardiovascular fluid mechanics and predictive computational modeling. My graduate research focuses on developing novel methodologies aimed at providing real-time mechanical information (fluid, solid) for several cardiovascular surgical planning procedures, including Transcatheter Aortic Valve Replacement, the Fontan Operation and Percutaneous Coronary Intervention. I'm pretty passionate about developing novel data- and model-driven computational techniques for optimizing treatment of cardiovascular diseases, as well as translating these approaches for real-time use in the clinic.
 
