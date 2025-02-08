@@ -35,6 +35,14 @@ sections:
       title: '📚 My Research'
       subtitle: ''
       text: |-
+
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+        <td> {{< video src="test.mp4" autoplay="true" loop="true" >}}
+        <td> {{< video src="j.mp4" autoplay="true" loop="true" >}
+        </tr>
+        </table>
+        
         {{< video src="test.mp4" autoplay="true" loop="true" >}}
         {{< video src="j.mp4" autoplay="true" loop="true" >}}
 
