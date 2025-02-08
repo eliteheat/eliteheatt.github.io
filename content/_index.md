@@ -45,7 +45,6 @@ sections:
           display: flex;
         }
 
-        .container img,
         .container video {
           width: 50.0%;
         }
