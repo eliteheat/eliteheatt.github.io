@@ -36,6 +36,20 @@ sections:
       subtitle: ''
       text: |-
 
+        <div class="container">
+          {{< video src="Supplemental Video 1 (Fly Through).mp4" autoplay="true" loop="true" >}} 
+          {{< video src="j.mp4" autoplay="true" loop="true" >}}
+        </div>
+
+        .container {
+          display: flex;
+        }
+
+        .container img,
+        .container video {
+          width: 33.33%;
+        }
+        
         {{< video src="Supplemental Video 1 (Fly Through).mp4" autoplay="true" loop="true" >}} 
         {{< video src="j.mp4" autoplay="true" loop="true" >}}
 
