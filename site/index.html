@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imran Ali Shah, PhD</title>
+    <meta name="description" content="Postdoctoral Researcher in Cardiovascular Biomechanics and Computational Modeling at Georgia Tech & Emory University">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        /* ═══════════════════════════════════════
+           DESIGN TOKENS
+        ═══════════════════════════════════════ */
+        :root {
+            --bg:           #05080e;
+            --bg-card:      #0b1018;
+            --bg-surface:   #10161f;
+            --text:         #dde4f0;
+            --text-muted:   #6b7a90;
+            --text-dim:     #364050;
+            --accent:       #4a8ff5;
+            --accent-dim:   rgba(74,143,245,0.12);
+            --accent-glow:  rgba(74,143,245,0.25);
+            --warm:         #e07d45;
+            --warm-dim:     rgba(224,125,69,0.12);
+            --border:       rgba(255,255,255,0.06);
+            --border-md:    rgba(255,255,255,0.11);
+        }
+
+        /* ═══════════════════════════════════════
+           RESET & BASE
+        ═══════════════════════════════════════ */
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 300;
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        img { display: block; max-width: 100%; }
+        a { color: inherit; text-decoration: none; }
+
+        /* ═══════════════════════════════════════
+           NAVIGATION
+        ═══════════════════════════════════════ */
+        #nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 200;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 3.5rem;
+            background: rgba(5,8,14,0.6);
+            backdrop-filter: blur(24px) saturate(150%);
+            -webkit-backdrop-filter: blur(24px) saturate(150%);
+            border-bottom: 1px solid var(--border);
+            transition: background 0.4s ease;
+        }
+
+        #nav.scrolled { background: rgba(5,8,14,0.92); }
+
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.05rem;
+            font-weight: 400;
+            letter-spacing: 0.04em;
+            color: var(--text);
+            transition: color 0.2s;
+        }
+        .nav-logo:hover { color: var(--accent); }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2.25rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.76rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--text); }
+
+        .nav-links .nav-cta {
+            border: 1px solid var(--border-md);
+            padding: 0.4rem 0.9rem;
+            border-radius: 2px;
+            color: var(--text-muted);
+            transition: border-color 0.2s, color 0.2s;
+        }
+        .nav-links .nav-cta:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* ═══════════════════════════════════════
+           HERO
+        ═══════════════════════════════════════ */
+        #hero {
+            position: relative;
+            height: 100vh;
+            min-height: 640px;
+            display: flex;
+            align-items: flex-end;
+            padding: 0 3.5rem 5.5rem;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.5;
+        }
+
+        /* Gradient: dark top & bottom, transparent middle → keeps video visible */
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(to bottom,
+                    rgba(5,8,14,0.55) 0%,
+                    rgba(5,8,14,0.05) 35%,
+                    rgba(5,8,14,0.05) 55%,
+                    rgba(5,8,14,0.9)  82%,
+                    rgba(5,8,14,1)   100%
+                );
+        }
+
+        /* Subtle vignette edges */
+        .hero-vignette {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, transparent 55%, rgba(5,8,14,0.6) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 780px;
+        }
+
+        .hero-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.72rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.1rem;
+            opacity: 0;
+            animation: riseIn 0.9s cubic-bezier(0.22,1,0.36,1) 0.4s forwards;
+        }
+
+        .hero-eyebrow::before {
+            content: '';
+            display: block;
+            width: 32px;
+            height: 1px;
+            background: var(--accent);
+            opacity: 0.7;
+        }
+
+        .hero-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 6.5vw, 5.2rem);
+            font-weight: 300;
+            line-height: 1.06;
+            letter-spacing: -0.01em;
+            margin-bottom: 1.4rem;
+            opacity: 0;
+            animation: riseIn 0.9s cubic-bezier(0.22,1,0.36,1) 0.55s forwards;
+        }
+
+        .hero-name em {
+            font-style: italic;
+            color: var(--text-muted);
+        }
+
+        .hero-tagline {
+            font-size: 0.975rem;
+            color: var(--text-muted);
+            max-width: 500px;
+            line-height: 1.75;
+            margin-bottom: 2.25rem;
+            opacity: 0;
+            animation: riseIn 0.9s cubic-bezier(0.22,1,0.36,1) 0.7s forwards;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: riseIn 0.9s cubic-bezier(0.22,1,0.36,1) 0.85s forwards;
+        }
+
+        /* ═══════════════════════════════════════
+           BUTTONS
+        ═══════════════════════════════════════ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.65rem 1.5rem;
+            font-size: 0.76rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border-radius: 2px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.22s ease;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 400;
+        }
+
+        .btn-solid {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+        .btn-solid:hover {
+            background: transparent;
+            color: var(--accent);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-muted);
+            border-color: var(--border-md);
+        }
+        .btn-outline:hover {
+            border-color: var(--text-muted);
+            color: var(--text);
+        }
+
+        /* Scroll cue */
+        .hero-scroll {
+            position: absolute;
+            bottom: 2.5rem;
+            right: 3.5rem;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.6rem;
+            opacity: 0;
+            animation: fadeIn 1s ease 1.6s forwards;
+        }
+        .hero-scroll span {
+            writing-mode: vertical-lr;
+            font-size: 0.6rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+        }
+        .hero-scroll-line {
+            width: 1px;
+            height: 52px;
+            background: linear-gradient(to bottom, transparent, var(--text-dim));
+        }
+
+        /* ═══════════════════════════════════════
+           SECTION SCAFFOLD
+        ═══════════════════════════════════════ */
+        .section-wrap {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 6rem 3.5rem;
+        }
+
+        .section-rule {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 3.5rem;
+        }
+        .section-rule hr {
+            border: none;
+            border-top: 1px solid var(--border);
+        }
+
+        .section-label {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 0.69rem;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        .section-label::after {
+            content: '';
+            height: 1px;
+            width: 40px;
+            background: var(--accent);
+            opacity: 0.45;
+        }
+
+        .section-heading {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            font-weight: 400;
+            line-height: 1.18;
+            margin-bottom: 3.5rem;
+        }
+        .section-heading em { font-style: italic; color: var(--text-muted); }
+
+        /* ═══════════════════════════════════════
+           ABOUT
+        ═══════════════════════════════════════ */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 5rem;
+            align-items: start;
+        }
+
+        .about-photo-wrap {
+            position: relative;
+        }
+
+        .about-photo,
+        .about-photo-placeholder {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-photo-placeholder {
+            flex-direction: column;
+            gap: 0.5rem;
+            color: var(--text-dim);
+            font-size: 0.72rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .about-accent {
+            position: absolute;
+            bottom: -12px;
+            left: -12px;
+            width: 55%;
+            height: 3px;
+            background: linear-gradient(to right, var(--accent), transparent);
+        }
+
+        .about-body p {
+            font-size: 0.975rem;
+            color: var(--text-muted);
+            line-height: 1.85;
+            margin-bottom: 1.3rem;
+        }
+
+        .about-body p:first-of-type {
+            font-size: 1.05rem;
+            color: var(--text);
+        }
+
+        .about-meta {
+            margin-top: 2rem;
+            padding-top: 1.75rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+
+        .meta-row {
+            display: flex;
+            gap: 1.25rem;
+        }
+
+        .meta-label {
+            min-width: 90px;
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            padding-top: 0.12rem;
+        }
+
+        .meta-val {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .meta-val a { color: var(--accent); }
+        .meta-val a:hover { text-decoration: underline; }
+
+        .social-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 1.75rem;
+        }
+
+        .social-chip {
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            border: 1px solid var(--border);
+            padding: 0.38rem 0.85rem;
+            border-radius: 2px;
+            transition: all 0.2s;
+        }
+        .social-chip:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* ═══════════════════════════════════════
+           RESEARCH CARDS
+        ═══════════════════════════════════════ */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+        }
+
+        .r-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: border-color 0.3s, transform 0.35s cubic-bezier(0.22,1,0.36,1);
+        }
+
+        .r-card:hover {
+            border-color: var(--border-md);
+            transform: translateY(-5px);
+        }
+
+        .r-card-media {
+            position: relative;
+            aspect-ratio: 16/10;
+            overflow: hidden;
+            background: var(--bg-surface);
+        }
+
+        .r-card-media video,
+        .r-card-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .r-card-badge {
+            position: absolute;
+            top: 0.75rem;
+            left: 0.75rem;
+            font-size: 0.62rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--accent);
+            background: rgba(5,8,14,0.72);
+            border: 1px solid rgba(74,143,245,0.3);
+            padding: 0.22rem 0.6rem;
+            backdrop-filter: blur(8px);
+        }
+
+        .r-card-body { padding: 1.4rem 1.4rem 1.6rem; }
+
+        .r-card-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-weight: 400;
+            line-height: 1.3;
+            margin-bottom: 0.7rem;
+        }
+
+        .r-card-desc {
+            font-size: 0.84rem;
+            color: var(--text-muted);
+            line-height: 1.72;
+        }
+
+        .r-card-tags {
+            margin-top: 1.2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .r-tag {
+            font-size: 0.62rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            border: 1px solid var(--border);
+            padding: 0.18rem 0.5rem;
+        }
+
+        /* ═══════════════════════════════════════
+           PUBLICATIONS
+        ═══════════════════════════════════════ */
+        .pub-list { display: flex; flex-direction: column; }
+
+        .pub-item {
+            display: grid;
+            grid-template-columns: 64px 1fr;
+            gap: 1.5rem;
+            align-items: start;
+            padding: 1.4rem 0;
+            border-bottom: 1px solid var(--border);
+            opacity: 0;
+            transform: translateY(14px);
+            transition: opacity 0.55s ease, transform 0.55s ease;
+        }
+
+        .pub-item.visible { opacity: 1; transform: translateY(0); }
+
+        .pub-item:first-child { border-top: 1px solid var(--border); }
+
+        .pub-yr {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.76rem;
+            color: var(--text-dim);
+            padding-top: 0.2rem;
+        }
+
+        .pub-title {
+            font-size: 0.925rem;
+            color: var(--text);
+            line-height: 1.55;
+            margin-bottom: 0.3rem;
+            font-weight: 400;
+        }
+        .pub-title a:hover { color: var(--accent); }
+
+        .pub-authors {
+            font-size: 0.78rem;
+            color: var(--text-dim);
+            margin-bottom: 0.2rem;
+        }
+        .pub-authors strong { color: var(--text-muted); font-weight: 500; }
+
+        .pub-journal {
+            font-size: 0.76rem;
+            color: var(--text-dim);
+            font-style: italic;
+        }
+
+        .badge {
+            display: inline-block;
+            font-size: 0.58rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.18rem 0.5rem;
+            border-radius: 2px;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+
+        .badge-new {
+            background: var(--accent-dim);
+            color: var(--accent);
+            border: 1px solid rgba(74,143,245,0.28);
+        }
+
+        .badge-prep {
+            background: var(--warm-dim);
+            color: var(--warm);
+            border: 1px solid rgba(224,125,69,0.25);
+        }
+
+        /* ═══════════════════════════════════════
+           TEACHING / AWARDS
+        ═══════════════════════════════════════ */
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+
+        .col-head {
+            font-size: 0.68rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .t-item {
+            padding: 0.9rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .t-course {
+            font-size: 0.875rem;
+            color: var(--text);
+            margin-bottom: 0.18rem;
+        }
+
+        .t-meta {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+        }
+
+        /* ═══════════════════════════════════════
+           CV BAND
+        ═══════════════════════════════════════ */
+        #cv-band {
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 4.5rem 3.5rem;
+        }
+
+        .cv-inner {
+            max-width: 1180px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .cv-inner h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 0.4rem;
+        }
+
+        .cv-inner p {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        /* ═══════════════════════════════════════
+           FOOTER
+        ═══════════════════════════════════════ */
+        footer {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 2.5rem 3.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .footer-copy {
+            font-size: 0.72rem;
+            color: var(--text-dim);
+            letter-spacing: 0.04em;
+        }
+
+        /* ═══════════════════════════════════════
+           ANIMATIONS
+        ═══════════════════════════════════════ */
+        @keyframes riseIn {
+            from { opacity:0; transform: translateY(22px); }
+            to   { opacity:1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity:0; }
+            to   { opacity:1; }
+        }
+
+        /* Scroll-triggered elements */
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ═══════════════════════════════════════
+           RESPONSIVE
+        ═══════════════════════════════════════ */
+        @media (max-width: 960px) {
+            #nav { padding: 0 1.75rem; }
+            .nav-links li:not(:last-child) { display: none; }
+
+            #hero { padding: 0 1.75rem 4.5rem; }
+            .hero-scroll { right: 1.75rem; }
+
+            .section-wrap { padding: 4.5rem 1.75rem; }
+            .section-rule { padding: 0 1.75rem; }
+
+            .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .about-photo-wrap { max-width: 220px; }
+
+            .research-grid { grid-template-columns: 1fr; }
+
+            .two-col { grid-template-columns: 1fr; gap: 2.5rem; }
+
+            #cv-band { padding: 3.5rem 1.75rem; }
+            .cv-inner { flex-direction: column; text-align: center; }
+
+            footer { padding: 2rem 1.75rem; flex-direction: column; gap: 0.75rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     NAVIGATION
+══════════════════════════════════ -->
+<nav id="nav">
+    <a href="#hero" class="nav-logo">Imran Ali Shah</a>
+    <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#teaching">Teaching</a></li>
+        <li><a href="assets/pdf/Shah-Imran_CV.pdf" target="_blank" class="nav-cta">CV</a></li>
+    </ul>
+</nav>
+
+
+<!-- ══════════════════════════════════
+     HERO
+══════════════════════════════════ -->
+<section id="hero">
+    <video class="hero-video" autoplay muted loop playsinline preload="auto">
+        <source src="assets/videos/fly_through.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-vignette"></div>
+
+    <div class="hero-content">
+        <p class="hero-eyebrow">Cardiovascular Biomechanics &nbsp;·&nbsp; Computational Modeling</p>
+        <h1 class="hero-name">Imran Ali Shah<em>, PhD</em></h1>
+        <p class="hero-tagline">
+            Postdoctoral researcher developing real-time predictive frameworks for cardiovascular surgical planning — bridging reduced order modeling, fluid mechanics, and clinical translation.
+        </p>
+        <div class="hero-actions">
+            <a href="#research" class="btn btn-solid">View Research</a>
+            <a href="#publications" class="btn btn-outline">Publications</a>
+            <a href="assets/pdf/Shah-Imran_CV.pdf" target="_blank" class="btn btn-outline">Download CV</a>
+        </div>
+    </div>
+
+    <div class="hero-scroll">
+        <span>Scroll</span>
+        <div class="hero-scroll-line"></div>
+    </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     ABOUT
+══════════════════════════════════ -->
+<div class="section-rule"><hr></div>
+
+<div class="section-wrap" id="about">
+    <p class="section-label reveal">About</p>
+    <div class="about-grid">
+
+        <div class="about-photo-wrap reveal">
+            <img class="about-photo" src="assets/images/headshot.jpg" alt="Imran Ali Shah">
+            <div class="about-accent"></div>
+        </div>
+
+        <div class="about-body">
+            <h2 class="section-heading reveal">Computational tools<br><em>for the living heart</em></h2>
+
+            <p class="reveal">
+                My research interests lie at the intersection of cardiovascular fluid mechanics and predictive computational modeling. I develop novel methodologies aimed at providing real-time mechanical information — fluid and solid — for cardiovascular surgical planning procedures, including Transcatheter Aortic Valve Replacement (TAVR), the Fontan Operation, and Percutaneous Coronary Intervention.
+            </p>
+
+            <p class="reveal">
+                I'm passionate about developing data- and model-driven computational techniques for optimizing treatment of cardiovascular diseases, and translating these approaches for real-time use in the clinic.
+            </p>
+
+            <div class="about-meta reveal">
+                <div class="meta-row">
+                    <span class="meta-label">Position</span>
+                    <span class="meta-val">Postdoctoral Researcher</span>
+                </div>
+                <div class="meta-row">
+                    <span class="meta-label">Institution</span>
+                    <span class="meta-val">Georgia Institute of Technology &amp; Emory University</span>
+                </div>
+                <div class="meta-row">
+                    <span class="meta-label">Department</span>
+                    <span class="meta-val">Wallace H. Coulter Dept. of Biomedical Engineering</span>
+                </div>
+                <div class="meta-row">
+                    <span class="meta-label">Email</span>
+                    <span class="meta-val"><a href="mailto:ishah9@gatech.edu">ishah9@gatech.edu</a></span>
+                </div>
+            </div>
+
+            <div class="social-row reveal">
+                <a href="https://scholar.google.com/citations?user=R9-iG80AAAAJ&hl=en" target="_blank" class="social-chip">Google Scholar</a>
+                <a href="https://github.com/eliteheat" target="_blank" class="social-chip">GitHub</a>
+                <a href="https://www.linkedin.com/in/imranshah9" target="_blank" class="social-chip">LinkedIn</a>
+                <a href="assets/pdf/Shah-Imran_CV.pdf" target="_blank" class="social-chip">CV ↓</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ══════════════════════════════════
+     RESEARCH
+══════════════════════════════════ -->
+<div class="section-rule"><hr></div>
+
+<div class="section-wrap" id="research">
+    <p class="section-label reveal">Research</p>
+    <h2 class="section-heading reveal">Simulation-driven<br><em>cardiovascular medicine</em></h2>
+
+    <div class="research-grid">
+
+        <!-- TAVR -->
+        <div class="r-card reveal">
+            <div class="r-card-media">
+                <video autoplay muted loop playsinline>
+                    <source src="assets/videos/deployment.mp4" type="video/mp4">
+                </video>
+                <span class="r-card-badge">TAVR</span>
+            </div>
+            <div class="r-card-body">
+                <h3 class="r-card-title">Transcatheter Aortic Valve Replacement</h3>
+                <p class="r-card-desc">
+                    Developing reduced order model-driven frameworks for real-time predictive modeling of TAVR deployment mechanics — enabling patient-specific pre-procedural risk assessment of coronary obstruction.
+                </p>
+                <div class="r-card-tags">
+                    <span class="r-tag">Reduced Order Modeling</span>
+                    <span class="r-tag">FSI</span>
+                    <span class="r-tag">Structural Mechanics</span>
+                    <span class="r-tag">Surgical Planning</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fontan -->
+        <div class="r-card reveal">
+            <div class="r-card-media">
+                <video autoplay muted loop playsinline>
+                    <source src="assets/videos/transparent_dep.mp4" type="video/mp4">
+                </video>
+                <span class="r-card-badge">Fontan</span>
+            </div>
+            <div class="r-card-body">
+                <h3 class="r-card-title">Fontan Surgical Planning</h3>
+                <p class="r-card-desc">
+                    Real-time shape optimization of the total cavopulmonary connection (TCPC) for patient-specific Fontan surgical planning via hyper-reduced order models and free-form deformation.
+                </p>
+                <div class="r-card-tags">
+                    <span class="r-tag">CFD</span>
+                    <span class="r-tag">Shape Optimization</span>
+                    <span class="r-tag">Congenital Heart Disease</span>
+                    <span class="r-tag">TCPC</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Coronary -->
+        <div class="r-card reveal">
+            <div class="r-card-media">
+                <img src="assets/images/overview.png" alt="Coronary Stent Hemodynamics">
+                <span class="r-card-badge">Coronary</span>
+            </div>
+            <div class="r-card-body">
+                <h3 class="r-card-title">Coronary Stent Hemodynamics</h3>
+                <p class="r-card-desc">
+                    Investigating the effects of drug-eluting stent platforms on endothelial wall shear stress in patient-specific coronary arteries — data from the prospective SHEAR-STENT clinical trial.
+                </p>
+                <div class="r-card-tags">
+                    <span class="r-tag">Wall Shear Stress</span>
+                    <span class="r-tag">PCI</span>
+                    <span class="r-tag">Patient-Specific CFD</span>
+                    <span class="r-tag">DES Platforms</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- ══════════════════════════════════
+     PUBLICATIONS
+══════════════════════════════════ -->
+<div class="section-rule"><hr></div>
+
+<div class="section-wrap" id="publications">
+    <p class="section-label reveal">Publications</p>
+    <h2 class="section-heading reveal">Selected works</h2>
+
+    <div class="pub-list">
+
+        <div class="pub-item">
+            <span class="pub-yr">Prep.</span>
+            <div>
+                <p class="pub-title">
+                    Real-Time Hemodynamic and Shape Optimization Simulations for Patient-Specific Fontan Surgical Planning via Reduced Order Modeling
+                    <span class="badge badge-prep">In Preparation</span>
+                </p>
+                <p class="pub-authors"><strong>I. Shah</strong>, F. Ballarin, Z.A. Wei, A.P. Yoganathan, L.P. Dasi, A. Veneziani</p>
+                <p class="pub-journal">Manuscript in Preparation</p>
+            </div>
+        </div>
+
+        <div class="pub-item">
+            <span class="pub-yr">Prep.</span>
+            <div>
+                <p class="pub-title">
+                    Real-Time Predictive Modeling of Patient-Specific TAVR Deployment Mechanics
+                    <span class="badge badge-prep">In Preparation</span>
+                </p>
+                <p class="pub-authors"><strong>I. Shah</strong>, F. Ballarin, A. Veneziani, L.P. Dasi</p>
+                <p class="pub-journal">Manuscript in Preparation</p>
+            </div>
+        </div>
+
+        <div class="pub-item">
+            <span class="pub-yr">2026</span>
+            <div>
+                <p class="pub-title">
+                    Intravascular Ultrasound Wall Shear Stress Imaging in Stented Coronary Arteries with Ultrafast Doppler
+                    <span class="badge badge-new">New</span>
+                </p>
+                <p class="pub-authors">T. Singh, S.S. Rojas, <strong>I. Shah</strong>, J.M. Tempestti, A. Veneziani, B. Lindsey</p>
+                <p class="pub-journal"><em>Scientific Reports</em> (Recently Accepted)</p>
+            </div>
+        </div>
+
+        <div class="pub-item">
+            <span class="pub-yr">2025</span>
+            <div>
+                <p class="pub-title">
+                    <a href="https://doi.org/10.1016/j.carrev.2025.11.001" target="_blank">
+                        A Randomized Prospective Study Investigating the Relationship Between Post-PCI Wall Shear Stress and 12-Month Neointimal Healing: The SHEAR-STENT Study
+                    </a>
+                </p>
+                <p class="pub-authors">D. Molony, L. Hung, M. Corban, B. Gogas, A. Lefieux, <strong>I. Shah</strong>, et al.</p>
+                <p class="pub-journal"><em>Cardiovascular Revascularization Medicine</em>, 2025</p>
+            </div>
+        </div>
+
+        <div class="pub-item">
+            <span class="pub-yr">2025</span>
+            <div>
+                <p class="pub-title">
+                    <a href="https://doi.org/10.1016/j.cmpb.2025.108762" target="_blank">
+                        Impact of the Stent Footprint on Endothelial Wall Shear Stress in Patient-Specific Coronary Arteries: A Computational Analysis from the SHEAR-STENT Trial
+                    </a>
+                </p>
+                <p class="pub-authors"><strong>I. Shah</strong>, D. Molony, A. Lefieux, K. Crawford, M. Piccinelli, H. Sun, D. Giddens, H. Samady, A. Veneziani</p>
+                <p class="pub-journal"><em>Computer Methods and Programs in Biomedicine</em>, 266:108762, 2025</p>
+            </div>
+        </div>
+
+        <div class="pub-item">
+            <span class="pub-yr">2024</span>
+            <div>
+                <p class="pub-title">
+                    <a href="https://doi.org/10.1007/s10439-023-03360-5" target="_blank">
+                        Reduced Order Modeling for Real-Time Stent Deformation Simulations of Transcatheter Aortic Valve Prostheses
+                    </a>
+                </p>
+                <p class="pub-authors"><strong>I. Shah</strong>, M. Samaee, A. Razavi, F. Esmailie, L.P. Dasi, A. Veneziani</p>
+                <p class="pub-journal"><em>Annals of Biomedical Engineering</em>, 52(2):208–225, 2024</p>
+            </div>
+        </div>
+
+        <div class="pub-item">
+            <span class="pub-yr">2023</span>
+            <div>
+                <p class="pub-title">
+                    <a href="https://doi.org/10.1007/s10554-023-02838-6" target="_blank">
+                        Stent Underexpansion is Associated with High Wall Shear Stress: A Biomechanical Analysis of the SHEAR-STENT Study
+                    </a>
+                </p>
+                <p class="pub-authors">S. Kumar, D. Molony, S. Khawaja, K. Crawford, E. Thompson, O. Hung, <strong>I. Shah</strong>, et al.</p>
+                <p class="pub-journal"><em>The International Journal of Cardiovascular Imaging</em>, 39:1375–82, 2023</p>
+            </div>
+        </div>
+
+        <div class="pub-item">
+            <span class="pub-yr">2022</span>
+            <div>
+                <p class="pub-title">
+                    <a href="https://doi.org/10.1016/j.shj.2022.100032" target="_blank">
+                        Biomechanics of Transcatheter Aortic Valve Replacement Complications and Computational Predictive Modeling
+                    </a>
+                </p>
+                <p class="pub-authors">F. Esmailie, A. Razavi, B. Yeats, S.K. Sivakumar, H. Chen, M. Samaee, <strong>I. Shah</strong>, A. Veneziani, P. Yadav, V. Thourani, L.P. Dasi</p>
+                <p class="pub-journal"><em>Structural Heart</em>, 6(2), 2022</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div style="margin-top: 2.25rem;" class="reveal">
+        <a href="assets/pdf/Shah-Imran_CV.pdf" target="_blank" class="btn btn-outline">
+            Full publication list (CV) &nbsp;→
+        </a>
+    </div>
+</div>
+
+
+<!-- ══════════════════════════════════
+     TEACHING & AWARDS
+══════════════════════════════════ -->
+<div class="section-rule"><hr></div>
+
+<div class="section-wrap" id="teaching">
+    <p class="section-label reveal">Teaching &amp; Recognition</p>
+    <h2 class="section-heading reveal">Courses &amp; awards</h2>
+
+    <div class="two-col">
+
+        <div class="reveal">
+            <p class="col-head">Georgia Institute of Technology</p>
+
+            <div class="t-item">
+                <p class="t-course">Graduate Student Research Mentor</p>
+                <p class="t-meta">Cardiovascular Fluid Mechanics Lab &nbsp;·&nbsp; Fall 2023 – Present</p>
+            </div>
+            <div class="t-item">
+                <p class="t-course">Undergraduate Research Mentor</p>
+                <p class="t-meta">Cardiovascular Fluid Mechanics Lab &nbsp;·&nbsp; Summer 2025 – Present</p>
+            </div>
+            <div class="t-item">
+                <p class="t-course">BMED 3410: Introduction to Biomechanics</p>
+                <p class="t-meta">Graduate Teaching Assistant &nbsp;·&nbsp; Fall 2021, Spring 2022</p>
+            </div>
+            <div class="t-item">
+                <p class="t-course">BMED 2310: Introduction to Biomedical Engineering Design</p>
+                <p class="t-meta">Teaching Assistant &nbsp;·&nbsp; Summer 2017, Fall 2017</p>
+            </div>
+            <div class="t-item">
+                <p class="t-course">BMED 3520: Biomedical Systems and Modeling</p>
+                <p class="t-meta">Teaching Assistant &nbsp;·&nbsp; Fall 2018</p>
+            </div>
+        </div>
+
+        <div class="reveal">
+            <p class="col-head">Selected Honors &amp; Awards</p>
+
+            <div class="t-item">
+                <p class="t-course">American Heart Association Predoctoral Fellowship</p>
+                <p class="t-meta">2024 – 2025</p>
+            </div>
+            <div class="t-item">
+                <p class="t-course">GA Chapter ACC Governor's Award for Excellence in Research</p>
+                <p class="t-meta">2022, 2024</p>
+            </div>
+            <div class="t-item">
+                <p class="t-course">Emory Global Health Hackathon — 1st Place</p>
+                <p class="t-meta">2023</p>
+            </div>
+            <div class="t-item">
+                <p class="t-course">Emory GHA 2040 Healthcare Futuring Competition — 1st Place</p>
+                <p class="t-meta">2023</p>
+            </div>
+            <div class="t-item">
+                <p class="t-course">CREATE-X Startup Launch Finalist &nbsp;·&nbsp; AQUApro</p>
+                <p class="t-meta">2024</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- ══════════════════════════════════
+     CV BAND
+══════════════════════════════════ -->
+<div id="cv-band">
+    <div class="cv-inner">
+        <div>
+            <h2>Full Curriculum Vitae</h2>
+            <p>Complete list of publications, conference presentations, awards &amp; experience.</p>
+        </div>
+        <a href="assets/pdf/Shah-Imran_CV.pdf" target="_blank" class="btn btn-solid" style="padding: 0.8rem 2rem; font-size:0.78rem;">
+            Download CV (PDF)
+        </a>
+    </div>
+</div>
+
+
+<!-- ══════════════════════════════════
+     FOOTER
+══════════════════════════════════ -->
+<footer>
+    <span class="footer-name">Imran Ali Shah, PhD</span>
+    <span class="footer-copy">© 2026 &nbsp;·&nbsp; Atlanta, GA</span>
+</footer>
+
+
+<script>
+    /* ── Navbar scroll opacity ── */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    /* ── Intersection observer: reveal on scroll ── */
+    const revealObs = new IntersectionObserver((entries) => {
+        entries.forEach((e, i) => {
+            if (e.isIntersecting) {
+                // stagger siblings slightly
+                const siblings = [...e.target.parentElement.querySelectorAll('.reveal:not(.visible)')];
+                const idx = siblings.indexOf(e.target);
+                setTimeout(() => {
+                    e.target.classList.add('visible');
+                }, idx * 60);
+                revealObs.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    /* ── Pub items observer ── */
+    const pubObs = new IntersectionObserver((entries) => {
+        entries.forEach((e, i) => {
+            if (e.isIntersecting) {
+                setTimeout(() => e.target.classList.add('visible'), i * 70);
+                pubObs.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.05 });
+
+    document.querySelectorAll('.pub-item').forEach(el => pubObs.observe(el));
+</script>
+
+</body>
+</html>
