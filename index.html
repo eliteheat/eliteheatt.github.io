@@ -30,6 +30,45 @@
             --border-md:    rgba(255,255,255,0.11);
         }
 
+        [data-theme="light"] {
+            --bg:           #f7f5f2;
+            --bg-card:      #eeecea;
+            --bg-surface:   #e5e3e0;
+            --text:         #1a1f2e;
+            --text-muted:   #4a5568;
+            --text-dim:     #9aa3b0;
+            --accent:       #2b6fd4;
+            --accent-dim:   rgba(43,111,212,0.1);
+            --accent-glow:  rgba(43,111,212,0.2);
+            --warm:         #c45f1e;
+            --warm-dim:     rgba(196,95,30,0.1);
+            --border:       rgba(0,0,0,0.07);
+            --border-md:    rgba(0,0,0,0.13);
+        }
+
+        [data-theme="light"] #nav {
+            background: rgba(247,245,242,0.7);
+        }
+        [data-theme="light"] #nav.scrolled {
+            background: rgba(247,245,242,0.95);
+        }
+        [data-theme="light"] .hero-overlay {
+            background: linear-gradient(
+                to bottom,
+                rgba(247,245,242,0.45) 0%,
+                rgba(247,245,242,0.05) 35%,
+                rgba(247,245,242,0.05) 55%,
+                rgba(247,245,242,0.88) 82%,
+                rgba(247,245,242,1) 100%
+            );
+        }
+        [data-theme="light"] .hero-vignette {
+            background: radial-gradient(ellipse at center, transparent 55%, rgba(247,245,242,0.6) 100%);
+        }
+        [data-theme="light"] .hero-scroll-line {
+            background: linear-gradient(to bottom, transparent, rgba(26,31,46,0.3));
+        }
+
         /* ═══════════════════════════════════════
            RESET & BASE
         ═══════════════════════════════════════ */
@@ -729,6 +768,31 @@
 ══════════════════════════════════ -->
 <nav id="nav">
     <a href="#hero" class="nav-logo">Imran Ali Shah</a>
+    <button id="theme-toggle" aria-label="Toggle light/dark theme" style="
+        background: none;
+        border: 1px solid var(--border-md);
+        color: var(--text-muted);
+        cursor: pointer;
+        padding: 0.38rem 0.6rem;
+        border-radius: 2px;
+        display: flex;
+        align-items: center;
+        transition: border-color 0.2s, color 0.2s;
+        margin-right: 0.5rem;
+    " onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'"
+    onmouseout="this.style.borderColor='var(--border-md)';this.style.color='var(--text-muted)'">
+        <!-- Sun icon (shown in dark mode) -->
+        <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <!-- Moon icon (shown in light mode) -->
+        <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+    </button>
     <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#research">Research</a></li>
@@ -1150,6 +1214,35 @@
     }, { threshold: 0.05 });
 
     document.querySelectorAll('.pub-item').forEach(el => pubObs.observe(el));
+
+    /* ── Light/Dark theme toggle ── */
+    const themeToggle = document.getElementById('theme-toggle');
+    const root = document.documentElement;
+
+    // On load: use saved preference, or fall back to system preference
+    const saved = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initial = saved ? saved : (prefersDark ? 'dark' : 'light');
+    applyTheme(initial);
+
+    themeToggle.addEventListener('click', () => {
+        const current = root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+        const next = current === 'dark' ? 'light' : 'dark';
+        applyTheme(next);
+        localStorage.setItem('theme', next);
+    });
+
+    function applyTheme(theme) {
+        if (theme === 'light') {
+            root.setAttribute('data-theme', 'light');
+            document.getElementById('icon-sun').style.display = 'none';
+            document.getElementById('icon-moon').style.display = 'block';
+        } else {
+            root.removeAttribute('data-theme');
+            document.getElementById('icon-sun').style.display = 'block';
+            document.getElementById('icon-moon').style.display = 'none';
+        }
+    }
 </script>
 
 </body>
